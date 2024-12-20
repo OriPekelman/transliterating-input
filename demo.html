@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transliterating Input with Form Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Coptic&display=swap" rel="stylesheet">
+
+  <style>
+    /* For reference the injected CSS
+  .transliteration-output {
+        position: absolute;
+        white-space: nowrap;
+        display: block;
+      }
+      .transliterated-text{
+        min-height: 1rem;
+      }
+
+      .transliteration-mapping-display {
+        margin-top: 10px;
+        position: fixed;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 1rem;
+        min-width: 5rem;
+        max-width:400px;
+        visibility: hidden;
+      }
+
+      .transliteration-mapping-display.top {
+        bottom: 100%;
+        left: 0;
+        margin-bottom: 10px;
+        justify-content: center;
+      }
+
+      .transliteration-mapping-display.bottom {
+        top: 100%;
+        left: 0;
+        margin-top: 10px;
+        justify-content: center;
+      }
+
+
+      .transliteration-mapping-item {
+        display: inline-block;
+        text-align: center;
+        font-size: 1.5rem;
+        width: auto;
+      }
+
+      .transliteration-mapping-item ruby {
+        font-size: 1rem;
+      }
+  */
+
+    /*Example CSS*/
+
+    input[is="transliterating-input"] {
+      color: rgb(9, 9, 9)
+    }
+
+    .transliteration-output {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+
+    .transliteration-mapping-display {
+      border: 1px solid #e3e2e2;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      background: #fff;
+    }
+
+    .transliteration-mapping-item ruby {
+      color: #555;
+    }
+
+    p {
+      padding-top: 15px;
+    }
+
+    /* Setting a font based on language */
+    input[lang="cop"],
+    div[lang="cop"] {
+      font-family: "Noto Sans Coptic", sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="#" method="post">
+    <p>The following input fields are using the transliterating input method.</p>
+    <p>This one uses Coptic Beta Code with placement bottom and the insert method for the virtual keyboard unicode.</p>
+    <input lang="cop" is="transliterating-input" data-input-method="beta" placement="bottom" data-show-mapping="true"
+      placeholder="Type here (Coptic-Beta)" dir="ltr" data-insert-mode="unicode">
+    <p>This one uses simplified Coptic with placement right and the insert method for the virtual keyboard ascii</p>
+    <input lang="cop" is="transliterating-input" data-input-method="coptic" placement="right" data-show-mapping="true"
+      placeholder="Type here (Coptic)" dir="ltr">
+    <p>This one uses simplified Greek with placement on top and without the virtual keyboard.</p>
+    <input is="transliterating-input" data-input-method="greek" placement="top" data-show-mapping="false"
+      placeholder="Type here (Greek)" dir="ltr">
+    <p dir="rtl">This one uses simplified Arabic with RTL and placement left
+      <input is="transliterating-input" data-input-method="arabic" placement="left" data-show-mapping="true"
+        placeholder="اكتب هنا (Arabic)" dir="rtl">
+    </p>
+    <p dir="rtl">This one uses simplified Hebrew with RTL and placement bottom
+      <input is="transliterating-input" data-input-method="hebrew" placement="bottom" data-show-mapping="true"
+        placeholder="Type here (Hebrew)" dir="rtl" value="test">
+    </p>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+<script src="transaliterate.js"></script>
+
+</html>
